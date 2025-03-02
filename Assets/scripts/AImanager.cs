@@ -45,11 +45,12 @@ public class AImanager : MonoBehaviour
     [Header("JSON API Configuration")]
     public TextAsset jsonApi;
     private string apiKey = "";
-    private string apiEndpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"; // Edit it and choose your prefer model
+    private string apiEndpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"; // Edit it and choose your prefer model
 
     //private Content[] chatHistory;
     public TMP_Text storyText;
     private List<string> eventHistory = new List<string>();
+
 
     void Start()
     {
@@ -104,6 +105,7 @@ public class AImanager : MonoBehaviour
                            $"- 创造力：{creativity} \n" +
                            $"- 职业：{career} \n" +
                            $"- 快乐值：{happiness} \n";
+        Debug.Log("当前玩家状态："+playerInfo);
         //历史事件只取最近5个
         string eventSummary = "过往人生经历：\n";
         if (previousEvents.Count > 0)
@@ -128,10 +130,14 @@ public class AImanager : MonoBehaviour
             "你是一个人生模拟器 AI，需要结合角色的属性和过往经历，生成一个合理的、影响深远的人生重大事件，并用生动简洁的故事风格呈现。\n" +
             "人生充满了意外，虽然概率小，但是在老年之前会出现死亡。如果出现死亡事件，请返回健康-10000\n" +
             "请生成一个符合逻辑的故事，并按照以下 JSON 格式返回：\n\n" +
-            "可以是好人好事，也可以出现暗黑向的故事（犯罪，暴力，色情，恐怖），一切都可能发生，主角可以是好人，也可以不是一个好人，但是必须写实，生活现实可能发生的事情，注意时代背景是现代"+
-            "你生成的故事如果对角色属性 健康（一般出生是100，但也可以0-100，小于等于0即刻死亡）、财富、智力、社交、性格、教育、创造力、职业、快乐值产生影响，请合理调整数值，至少影响一项数值"+
-            "23岁之前一般都是在上学，6-12小学，12-15初中，15-18高中（职业高中0，18以后就是大学（大专）不一定被限制死，随便发挥）"+
+            "可以是好人好事，也可以出现暗黑向的故事（犯罪，暴力，色情，恐怖），一切都可能发生，主角可以是好人，也可以不是一个好人，但是必须写实，生活现实可能发生的事情，注意时代背景是现代，事件丰富多样一些，国家背景是中国"+
+            "你生成的故事如果对角色属性 健康（一般出生是100，小于等于0死亡概率逐渐增高，但需要描述死亡原因）、财富、智力、社交、性格、教育、创造力、职业、快乐值产生影响，请合理调整数值，至少影响一项数值"+
+            "23岁之前一般都是在上学，6-12小学，12-15初中，15-18高中（职业高中0，18以后就是大学（大专）不一定被限制死，随便发挥）,健康也不一定一直会降，也会增加，但是记住人类大概率不会活得超过100岁"+
+            "健康值下降的时候，可以通过金钱进行一定的挽回，大部分人都可以活得超过60，但是超过60死亡率会增加"+
             "智商会有个初始值，随机给一个"+
+            "职业可以多元化比如军人，工人，杀手，打手，也可以半路换职业，内容不要只关于网络，网暴，网安"+
+            "健康值也可以增加"+
+            "不要只谈事业，家庭（父母，子女，伴侣），友情也是会影响人的，可以言情，可以励志，但是不要脱离现实"+
             jsonExample;
         StartCoroutine(SendPromptRequestToGemini(prompt));
 

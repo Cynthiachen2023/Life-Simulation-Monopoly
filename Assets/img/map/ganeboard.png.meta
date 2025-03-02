@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ganeboard_0: 8345492424994598168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

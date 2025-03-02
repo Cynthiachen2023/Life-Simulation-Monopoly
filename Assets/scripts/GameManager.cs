@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using static UnityEngine.Rendering.DebugUI.Table;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public TMP_Text diceResultText; //显示投掷的数字
-    public Button rollDiceButton; //投掷数字的按钮
+    public UnityEngine.UI.Button rollDiceButton;  // 显式指定 UnityEngine.UI 的 Button
+
 
     public TMP_Text age; //显示年龄
     private int ageNumber;
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text gameOverText; // 显示死亡文本
     public TMP_Text lifeReviewText; // 显示完整人生回顾的文本框
     public ScrollRect lifeReviewScrollView; // 滚动视图
+    public TMP_Text deadReason;
+
 
 
     //角色属性
@@ -91,13 +95,19 @@ public class GameManager : MonoBehaviour
         age.text = $"年龄：{ageNumber}";
 
 
+        //生成AI事件
+        aiManager.GenerateEvent(
+            ageNumber, health, wealth, intelligence, social, creativity,
+            personality, education, career, happiness, allEventList
+        );
+
 
         //启动IEnumerator 函数（协程）移动角色
         StartCoroutine(MovePlayerSoomthly(targetPosition));
 
-        //生成AI事件
+        
 
-   
+
 
     }
     void GenerateBoardPositions() {
@@ -167,7 +177,7 @@ public class GameManager : MonoBehaviour
             Vector3 nextPostion = boardPositions[currentPosition]; //找到下一步的位置
 
             while (Vector3.Distance(playerPiece.position,nextPostion) > 0.1f) {
-                playerPiece.position = Vector3.Lerp(playerPiece.position, nextPostion, Time.deltaTime * 5);
+                playerPiece.position = Vector3.Lerp(playerPiece.position, nextPostion, Time.deltaTime * 3.5f);
 
                 //让 Unity 等待 下一帧 再继续执行循环，避免卡顿。
                 yield return null;
@@ -181,11 +191,8 @@ public class GameManager : MonoBehaviour
         //生成事件icon小脚丫
         creatEventIcon(currentPosition);
 
-        //生成AI事件
-        aiManager.GenerateEvent(
-            ageNumber, health, wealth, intelligence, social, creativity,
-            personality, education, career, happiness, allEventList
-        );
+        Object.FindFirstObjectByType<UiManager>().currenEvent();
+
 
     }
 
@@ -193,7 +200,7 @@ public class GameManager : MonoBehaviour
         GameObject newIcon = Instantiate(eventIconPrefab,evenIconParent);
         newIcon.transform.position = boardPositions[position];
 
-        newIcon.GetComponent<Button>().onClick.AddListener(()=> ShowEventDetail(position));
+        newIcon.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(()=> ShowEventDetail(position));
     }
 
     /// <summary>
@@ -213,11 +220,11 @@ public class GameManager : MonoBehaviour
     /// <param name="position"></param>
     /// <param name="shortEvent"></param>
     /// <param name="fullEvent"></param>
-    public void LogEvent(int position, string shortEvent, string fullEvent)
+    public void LogEvent(int position, string shortDescription, string detailedDescription)
     { 
-        eventHistory[position] = fullEvent;
-        allEventList.Add($"{shortEvent}\n{fullEvent}");
-        eventlogText.text += $"{shortEvent}\n";
+        eventHistory[position] = detailedDescription;
+        allEventList.Add($"{shortDescription}\n{detailedDescription}");
+        eventlogText.text += $"{shortDescription}\n";
     }
 
     public void ShowAllEvents()
@@ -237,7 +244,7 @@ public class GameManager : MonoBehaviour
             case "health":
                 health += value;
                 healthText.text = $"健康：{health}";
-                if (health <= 0)
+                if (health <= -10000)
                 {
                     GameOver(); // ⬅ 触发游戏结束
                 }
@@ -295,7 +302,10 @@ public class GameManager : MonoBehaviour
         // 显示在 UI 上
         lifeReviewText.text = lifeReview;
 
-        gameOverCanvas.SetActive(true); // 显示死亡 UI
+        Object.FindFirstObjectByType<UiManager>().Gameover();
+
+        deadReason.text = eventHistory[currentPosition];
+
         rollDiceButton.interactable = false; // 禁用投掷按钮
     }
 

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
@@ -10,6 +12,13 @@ public class UiManager : MonoBehaviour
     public GameObject lifeReviewCanvas;
     public GameObject gameOverCanvas;
 
+    public ScrollRect currentEventScroll;
+    public ScrollRect lifeReviewScroll;
+    public ScrollRect storyDetailScroll;
+
+    public RectTransform currentEventcontent;
+    public RectTransform lifeReviewcontent;
+    public RectTransform storyDetailcontent;
 
 
     void Start()
@@ -78,7 +87,48 @@ public class UiManager : MonoBehaviour
         gameBoardCanvas.SetActive(false);
         storyDetailCanvas.SetActive(false);
         currentEventCanvas.SetActive(false);
+        player.SetActive(false);
     }
 
+    public void Gameover() {
+        lifeReviewCanvas.SetActive(false);
+        gameOverCanvas.SetActive(true);
+        mainMenuCanvas.SetActive(false);
+        gameBoardCanvas.SetActive(false);
+        storyDetailCanvas.SetActive(false);
+        currentEventCanvas.SetActive(false);
+    }
 
+    void OnEnable() // 当窗口被激活时
+    {
+        ResetScrollPosition();
+    }
+
+    public void ResetScrollPosition()
+    {
+        StartCoroutine(ResetScrollNextFrame());
+
+
+    }
+
+    IEnumerator ResetScrollNextFrame()
+    { 
+        yield return new WaitForEndOfFrame();
+        currentEventScroll.verticalNormalizedPosition = 1.0f;
+        lifeReviewScroll.verticalNormalizedPosition = 1.0f;
+        storyDetailScroll.verticalNormalizedPosition = 1.0f;
+        currentEventcontent.anchoredPosition = new Vector2(currentEventcontent.anchoredPosition.x, 0);
+        lifeReviewcontent.anchoredPosition = new Vector2(lifeReviewcontent.anchoredPosition.x, 0);
+        storyDetailcontent.anchoredPosition = new Vector2(storyDetailcontent.anchoredPosition.x, 0);
+
+
+    }
+    public void ShowEventLog()
+    {
+        // 你的 UI 逻辑，显示 ScrollView
+        currentEventScroll.gameObject.SetActive(true);
+        lifeReviewScroll.gameObject.SetActive(true);
+        storyDetailScroll.gameObject.SetActive(true);
+        ResetScrollPosition(); // 确保打开时回到顶部
+    }
 }
