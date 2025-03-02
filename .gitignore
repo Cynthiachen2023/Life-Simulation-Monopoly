@@ -1,0 +1,19 @@
+# Unity relevant
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# vscode
+.vscode/
+*.code-workspace
+
+# Unity catche
+UserSettings/
+.vsconfig
+
+# MacOS/Linux
+.DS_Store
