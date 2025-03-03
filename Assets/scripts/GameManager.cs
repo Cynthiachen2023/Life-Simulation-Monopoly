@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
     public int intelligence;
     public int social;
     public int happiness;
-    public int creativity;
     public string education;
     public string career;
     public string personality;
@@ -66,10 +65,22 @@ public class GameManager : MonoBehaviour
     public TMP_Text educationText;
     public TMP_Text careerText;
     public TMP_Text personalityText;
-    public TMP_Text creativityText;
 
     //ai 脚本
     public AImanager aiManager;
+    public UiManager Uimanager;
+
+    //gender
+    public enum Gender { Male, Female };
+    public Gender playerGender;
+    [Header("角色 UI")]
+    public GameObject maleUI;
+    public GameObject femaleUI;
+
+
+    [Header("角色 Sprite")]
+    public GameObject maleCharacter;   // 男性角色形象
+    public GameObject femaleCharacter; // 女性角色形象
 
     void Start()
     {
@@ -77,13 +88,15 @@ public class GameManager : MonoBehaviour
         playerPiece.position = boardPositions[currentPosition];  // 让角色从起点开始
         rollDiceButton.onClick.AddListener(RollDice);  // 绑定投掷按钮
         diceResultText.enabled = true;
+        AssignRandomGender(); // 开始游戏时随机生成角色性别
     }
 
-    public void RollDice() {
+    public void RollDice()
+    {
 
-        
-        //生成1-10随机数
-        int diceNumber = Random.Range(1, 11);
+
+        //生成5-10随机数
+        int diceNumber = Random.Range(4, 11);
 
         diceResultText.text = diceNumber.ToString(); //将数字转化为为文本，然后展示投掷数字，因为text组件只接受string
 
@@ -93,11 +106,15 @@ public class GameManager : MonoBehaviour
         //增加年龄
         ageNumber = targetPosition;
         age.text = $"年龄：{ageNumber}";
+        string ageLabel = (Uimanager.selectLanguage == UiManager.Language.Chinese) ?
+                              Uimanager.chineseTexts["age"] :
+                              Uimanager.englishTexts["age"];
+        age.text = $"{ageLabel}: {ageNumber}";
 
 
         //生成AI事件
         aiManager.GenerateEvent(
-            ageNumber, health, wealth, intelligence, social, creativity,
+            ageNumber, health, wealth, intelligence, social,
             personality, education, career, happiness, allEventList
         );
 
@@ -105,12 +122,13 @@ public class GameManager : MonoBehaviour
         //启动IEnumerator 函数（协程）移动角色
         StartCoroutine(MovePlayerSoomthly(targetPosition));
 
-        
+
 
 
 
     }
-    void GenerateBoardPositions() {
+    void GenerateBoardPositions()
+    {
         int rows = 15;
         int cols = 13;
         float gridSize = 0.59f;
@@ -118,7 +136,8 @@ public class GameManager : MonoBehaviour
         boardPositions = new Vector3[rows * cols];
 
         int index = 0;
-        for (int col = 0; col < cols; col++) {
+        for (int col = 0; col < cols; col++)
+        {
             if (col % 4 == 0) //0 4 8 12是从下往上增加
             {
                 for (int row = 0; row < rows; row++)
@@ -168,15 +187,18 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="targetPosition"></param>
     /// <returns></returns>
-    IEnumerator MovePlayerSoomthly(int targetPosition) {
+    IEnumerator MovePlayerSoomthly(int targetPosition)
+    {
         rollDiceButton.interactable = false; //禁用投掷按钮，防止多次点击
 
         //如果角色距离 targetPosition 还比较远，就不断地往目标方向移动。
-        while (currentPosition < targetPosition) {
+        while (currentPosition < targetPosition)
+        {
             currentPosition++;
             Vector3 nextPostion = boardPositions[currentPosition]; //找到下一步的位置
 
-            while (Vector3.Distance(playerPiece.position,nextPostion) > 0.1f) {
+            while (Vector3.Distance(playerPiece.position, nextPostion) > 0.1f)
+            {
                 playerPiece.position = Vector3.Lerp(playerPiece.position, nextPostion, Time.deltaTime * 3.5f);
 
                 //让 Unity 等待 下一帧 再继续执行循环，避免卡顿。
@@ -185,34 +207,35 @@ public class GameManager : MonoBehaviour
             }
             playerPiece.position = nextPostion;
         }
-        
-        rollDiceButton.interactable= true;
+
+        rollDiceButton.interactable = true;
 
         //生成事件icon小脚丫
         creatEventIcon(currentPosition);
 
-        Object.FindFirstObjectByType<UiManager>().currenEvent();
-
 
     }
 
-    void creatEventIcon(int position) {
-        GameObject newIcon = Instantiate(eventIconPrefab,evenIconParent);
+    void creatEventIcon(int position)
+    {
+        GameObject newIcon = Instantiate(eventIconPrefab, evenIconParent);
         newIcon.transform.position = boardPositions[position];
 
-        newIcon.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(()=> ShowEventDetail(position));
+        newIcon.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ShowEventDetail(position));
     }
 
     /// <summary>
     /// 点击icon之后显示当前格子的事件
     /// </summary>
     /// <param name="position"></param>
-    void ShowEventDetail(int position) {
-        if (eventHistory.ContainsKey(position)) { 
+    void ShowEventDetail(int position)
+    {
+        if (eventHistory.ContainsKey(position))
+        {
             currentStoryText.text = eventHistory[position]; // 显示完整事件
-            Object.FindFirstObjectByType<UiManager>().currenEvent();
+            Uimanager.currenEvent();
         }
-    
+
     }
     /// <summary>
     /// AI生成的事件存储到history中去
@@ -221,7 +244,7 @@ public class GameManager : MonoBehaviour
     /// <param name="shortEvent"></param>
     /// <param name="fullEvent"></param>
     public void LogEvent(int position, string shortDescription, string detailedDescription)
-    { 
+    {
         eventHistory[position] = detailedDescription;
         allEventList.Add($"{shortDescription}\n{detailedDescription}");
         eventlogText.text += $"{shortDescription}\n";
@@ -229,7 +252,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowAllEvents()
     {
-        storyDetailText.text = string.Join("\n\n", allEventList); // 拼接所有事件
+        storyDetailText.text = string.Join("\n\n", "-", allEventList); // 拼接所有事件
         storyDetailCanvas.gameObject.SetActive(true); // 打开大窗口
     }
 
@@ -238,63 +261,77 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// 
 
-    public void ModifyAttribute(string attribute, int value) {
+    public void ModifyAttribute(string attribute, int value)
+    {
+        bool isChinese = (Uimanager.selectLanguage == UiManager.Language.Chinese);
+
         //switch是一种多分支
-        switch (attribute) {
+        switch (attribute)
+        {
             case "health":
                 health += value;
-                healthText.text = $"健康：{health}";
-                if (health <= -10000)
+                healthText.text = isChinese ? $"健康：{health}" : $"HP: {health}";
+                if (health <= -800)
                 {
                     GameOver(); // ⬅ 触发游戏结束
                 }
                 break;
             case "wealth":
                 wealth += value;
-                wealthText.text = $"财富：{wealth}";
+                wealthText.text = isChinese ? $"财富：{wealth}" : $"$: {wealth}";
                 break;
             case "intelligence":
                 intelligence += value;
-                intelligenceText.text = $"智力：{intelligence}";
+                intelligenceText.text = isChinese ? $"智力：{intelligence}" : $"IQ: {intelligence}";
                 break;
             case "social":
                 social += value;
-                socialText.text = $"社交：{social}";
+                socialText.text = isChinese ? $"社交：{social}" : $"Soc.: {social}";
                 break;
             case "happiness":
                 happiness += value;
-                happinessText.text = $"快乐值：{happiness}";
-                break;
-            case "creativity":
-                creativityText.text = $"创造力：{creativity}";
+                happinessText.text = isChinese ? $"快乐值：{happiness}" : $"Joy: {happiness}";
                 break;
         }
     }
 
     public void ModifyAttribute(string attribute, string newValue)
     {
+        bool isChinese = (Uimanager.selectLanguage == UiManager.Language.Chinese);
         switch (attribute)
         {
             case "education":
                 education = newValue;
-                educationText.text = $"教育：{education}";
+                educationText.text = isChinese ? $"教育：{education}" : $"Edu.: {education}";
                 break;
             case "career":
                 career = newValue;
-                careerText.text = $"职业：{career}";
+                careerText.text = isChinese ? $"职业：{career}" : $"Job: {career}";
                 break;
             case "personality":
                 personality = newValue;
-                personalityText.text = $"性格：{personality}";
+                personalityText.text = isChinese ? $"性格：{personality}" : $"Pers.: {personality}";
                 break;
         }
     }
 
-    public void GameOver() {
+    public void GameOver()
+    {
+        string lifeReview;
         Debug.Log("角色死亡，游戏结束");
-        gameOverText.text = "你因健康值耗尽而死亡，人生旅程到此结束。\n";
+        if (Uimanager.selectLanguage == UiManager.Language.Chinese)
+        {
+            gameOverText.text = "你因健康值耗尽而死亡，人生旅程到此结束。\n";
+            lifeReview = "你的一生回顾：\n\n";
+        }
+        else {
+            gameOverText.text = "You have died due to depleted health. Your life journey has come to an end.\n";
+            lifeReview = "A review of your life:\n\n";
 
-        string lifeReview = "你的一生回顾：\n\n";
+        }
+            
+
+        
         foreach (string eventLog in allEventList)
         {
             lifeReview += "🔹 " + eventLog + "\n\n"; // 每个事件加上符号
@@ -313,5 +350,49 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("重新开始游戏");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
+
+
+
+    void updateCharacterUI()
+    {
+
+        if (playerGender == Gender.Male)
+        {
+
+            maleUI.SetActive(true);
+            femaleUI.SetActive(false);
+        }
+        else
+        {
+            maleUI.SetActive(false);
+            femaleUI.SetActive(true);
+        }
+    }
+
+    void AssignRandomGender()
+    {
+        playerGender = (Random.value > 0.5f) ? Gender.Male : Gender.Female; // 50% 概率选择性别
+        updateCharacterUI();
+        UpdateCharacterSprite();
+    }
+
+    void UpdateCharacterSprite()
+    {
+        if (playerGender == Gender.Male)
+        {
+            maleCharacter.SetActive(true);
+            femaleCharacter.SetActive(false);
+            playerPiece = maleCharacter.transform;
+        }
+        else
+        {
+            maleCharacter.SetActive(false);
+            femaleCharacter.SetActive(true);
+            playerPiece = femaleCharacter.transform;
+        }
+
     }
 }

@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\repos\\richlife\\RichLife\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|d:\\repos\\richlife\\richlife\\assets\\scripts\\aimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|D:\\repos\\richlife\\RichLife\\assets\\scripts\\aimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\aimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|D:\\repos\\richlife\\RichLife\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|d:\\repos\\richlife\\richlife\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|D:\\repos\\richlife\\RichLife\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|d:\\repos\\richlife\\richlife\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|D:\\repos\\richlife\\RichLife\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,9 +25,22 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 206,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 197,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\GameManager.cs",
+              "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\scripts\\GameManager.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAzwP0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T11:22:58.798Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -36,22 +49,23 @@
               "RelativeDocumentMoniker": "Assets\\scripts\\AImanager.cs",
               "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\AImanager.cs",
               "RelativeToolTip": "Assets\\scripts\\AImanager.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAUwC8AAABqAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAAAJ8AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-01T12:50:17.502Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UiManager.cs",
               "DocumentMoniker": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\UiManager.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\UiManager.cs",
               "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\UiManager.cs",
               "RelativeToolTip": "Assets\\scripts\\UiManager.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAcwGEAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAqwMoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T07:35:44.444Z"
+              "WhenOpened": "2025-02-28T07:35:44.444Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -61,21 +75,10 @@
               "RelativeDocumentMoniker": "Assets\\scripts\\PlayerMovement.cs",
               "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAIwBsAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAIwA4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T13:13:17.406Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\GameManager.cs",
-              "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
-              "RelativeToolTip": "Assets\\scripts\\GameManager.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAqwPoAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T13:34:42.032Z"
+              "WhenOpened": "2025-02-27T13:13:17.406Z",
+              "EditorCaption": ""
             }
           ]
         }
