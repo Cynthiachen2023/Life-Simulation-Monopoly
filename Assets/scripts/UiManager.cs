@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +12,7 @@ public class UiManager : MonoBehaviour
     public GameObject currentEventCanvas;
     public GameObject lifeReviewCanvas;
     public GameObject gameOverCanvas;
+    public GameObject about;
 
     public ScrollRect currentEventScroll;
     public ScrollRect lifeReviewScroll;
@@ -28,36 +29,47 @@ public class UiManager : MonoBehaviour
     public Language selectLanguage = Language.Chinese;
     public TMP_Text LanguageButtonText;
 
-    [Header("ÖĞÓ¢ÎÄ-Maincanvas")]
-    public TMP_Text title, startbtn, language;
+    [Header("ä¸­è‹±æ–‡-Maincanvas")]
+    public TMP_Text title, startbtn, language,aboutBtn;
 
-    [Header("ÖĞÓ¢ÎÄ-Gameboard")]
+    [Header("ä¸­è‹±æ–‡-Gameboard")]
     public TMP_Text drawNumber, ageText, healthText, wealthText, intelligenceText, socialText, personalityText, educationText, careerText, happinessText;
-    public TMP_Text eventLogBtn; //¸ü¶à
+    public TMP_Text eventLogBtn; //æ›´å¤š
 
-    [Header("ÖĞÓ¢ÎÄ-lifeReview")]
+    [Header("ä¸­è‹±æ–‡-lifeReview")]
     public TMP_Text LFbackToGameBtn;
 
-    [Header("ÖĞÓ¢ÎÄ-storyDetail")]
+    [Header("ä¸­è‹±æ–‡-storyDetail")]
     public TMP_Text SDbackToGameBtn;
 
-    [Header("ÖĞÓ¢ÎÄ-currentEvent")]
+    [Header("ä¸­è‹±æ–‡-currentEvent")]
     public TMP_Text CEbackToGameBtn;
 
-    [Header("ÖĞÓ¢ÎÄ-Gameover")]
+    [Header("ä¸­è‹±æ–‡-Gameover")]
     public TMP_Text GOtitle, gameOverText, lifereviewBtn, restartBtn;
+
+    [Header("ä¸­è‹±æ–‡-About")]
+    public TMP_Text backToMenu,content;
+
 
     public GameManager gameManager;
 
     void Start()
     {
-        //´ËÊ±Ö»ÏÔÊ¾Ö÷²Ëµ¥
+        about.SetActive(true);
+        about.SetActive(false);
+        MainMenu();
+
+    }
+
+    public void MainMenu() {
         mainMenuCanvas.SetActive(true);
         gameBoardCanvas.SetActive(false);
         storyDetailCanvas.SetActive(false);
         currentEventCanvas.SetActive(false);
         lifeReviewCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
+        about.SetActive(false);
         realPlayerSetFalse();
 
     }
@@ -72,6 +84,7 @@ public class UiManager : MonoBehaviour
         currentEventCanvas.SetActive(false);
         lifeReviewCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
+        about.SetActive(false);
     }
 
     public void storyDetail() { 
@@ -80,6 +93,7 @@ public class UiManager : MonoBehaviour
         storyDetailCanvas.SetActive(true);
         realPlayerSetFalse();
         currentEventCanvas.SetActive(false);
+        about.SetActive(false);
     }
 
     public void currenEvent() {
@@ -88,6 +102,7 @@ public class UiManager : MonoBehaviour
         storyDetailCanvas.SetActive(false);
         realPlayerSetTrue();
         currentEventCanvas.SetActive(true);
+        about.SetActive(false);
 
     }
 
@@ -97,6 +112,7 @@ public class UiManager : MonoBehaviour
         storyDetailCanvas.SetActive(false);
         realPlayerSetTrue();
         currentEventCanvas.SetActive(false);
+        about.SetActive(false);
     }
 
     public void backToGameOver() {
@@ -106,6 +122,7 @@ public class UiManager : MonoBehaviour
         gameBoardCanvas.SetActive(false);
         storyDetailCanvas.SetActive(false);
         currentEventCanvas.SetActive(false);
+        about.SetActive(false);
     }
 
     public void lifeReview() {
@@ -115,6 +132,7 @@ public class UiManager : MonoBehaviour
         gameBoardCanvas.SetActive(false);
         storyDetailCanvas.SetActive(false);
         currentEventCanvas.SetActive(false);
+        about.SetActive(false);
         realPlayerSetFalse();
     }
 
@@ -125,9 +143,21 @@ public class UiManager : MonoBehaviour
         gameBoardCanvas.SetActive(false);
         storyDetailCanvas.SetActive(false);
         currentEventCanvas.SetActive(false);
+        about.SetActive(false);
     }
 
-    void OnEnable() // µ±´°¿Ú±»¼¤»îÊ±
+    public void aboutPage() {
+        lifeReviewCanvas.SetActive(false);
+        gameOverCanvas.SetActive(false);
+        mainMenuCanvas.SetActive(false);
+        gameBoardCanvas.SetActive(false);
+        storyDetailCanvas.SetActive(false);
+        currentEventCanvas.SetActive(false);
+        about.SetActive(true);
+
+    }
+
+    void OnEnable() // å½“çª—å£è¢«æ¿€æ´»æ—¶
     {
         ResetScrollPosition();
     }
@@ -153,38 +183,61 @@ public class UiManager : MonoBehaviour
     }
     public void ShowEventLog()
     {
-        // ÄãµÄ UI Âß¼­£¬ÏÔÊ¾ ScrollView
+        // ä½ çš„ UI é€»è¾‘ï¼Œæ˜¾ç¤º ScrollView
         currentEventScroll.gameObject.SetActive(true);
         lifeReviewScroll.gameObject.SetActive(true);
         storyDetailScroll.gameObject.SetActive(true);
-        ResetScrollPosition(); // È·±£´ò¿ªÊ±»Øµ½¶¥²¿
+        ResetScrollPosition(); // ç¡®ä¿æ‰“å¼€æ—¶å›åˆ°é¡¶éƒ¨
     }
 
 
 
     public Dictionary<string, string> chineseTexts = new Dictionary<string, string>()
     {
-        {"title", "Ä£ÄâÈËÉú´ó¸»ÎÌ"},
-        {"startbtn", "¿ªÊ¼ÓÎÏ·"},
-        {"language", "ÓïÑÔ£ºÖĞÎÄ"},
-        {"drawNumber", "Í¶ÖÀ"},
-        {"age", "ÄêÁä£º"},
-        {"health", "½¡¿µ£º"},
-        {"wealth", "²Æ¸»£º"},
-        {"intelligence", "ÖÇÁ¦£º"},
-        {"social", "Éç½»£º"},
-        {"personality", "ĞÔ¸ñ£º"},
-        {"education", "½ÌÓı£º"},
-        {"career", "Ö°Òµ£º"},
-        {"happiness", "¿ìÀÖ£º"},
-        {"eventLogBtn", "..¸ü¶à"},
-        {"LFbackToGameBtn", "·µ»ØÓÎÏ·"},
-        {"SDbackToGameBtn", "·µ»ØÓÎÏ·"},
-        {"CEbackToGameBtn", "·µ»Ø"},
-        {"GOtitle", "ÓÎÏ·½áÊø"},
-        {"gameOverText", "ÄãÒò½¡¿µÖµºÄ¾¡¶øËÀÍö£¬ÈËÉúÂÃ³Ìµ½´Ë½áÊø¡£"},
-        {"lifereviewBtn", "»Ø¹ËÈËÉú"},
-        {"restartBtn", "ÖØÍ¶ÔÙÀ´"}
+        {"title", "æ¨¡æ‹Ÿäººç”Ÿå¤§å¯Œç¿"},
+        {"startbtn", "å¼€å§‹æ¸¸æˆ"},
+        {"language", "è¯­è¨€ï¼šä¸­æ–‡"},
+        {"drawNumber", "æŠ•æ·"},
+        {"age", "å¹´é¾„ï¼š"},
+        {"health", "å¥åº·ï¼š"},
+        {"wealth", "è´¢å¯Œï¼š"},
+        {"intelligence", "æ™ºåŠ›ï¼š"},
+        {"social", "ç¤¾äº¤ï¼š"},
+        {"personality", "æ€§æ ¼ï¼š"},
+        {"education", "æ•™è‚²ï¼š"},
+        {"career", "èŒä¸šï¼š"},
+        {"happiness", "å¿«ä¹ï¼š"},
+        {"eventLogBtn", "..æ›´å¤š"},
+        {"LFbackToGameBtn", "è¿”å›æ¸¸æˆ"},
+        {"SDbackToGameBtn", "è¿”å›æ¸¸æˆ"},
+        {"CEbackToGameBtn", "è¿”å›"},
+        {"GOtitle", "æ¸¸æˆç»“æŸ"},
+        {"gameOverText", "ä½ å› å¥åº·å€¼è€—å°½è€Œæ­»äº¡ï¼Œäººç”Ÿæ—…ç¨‹åˆ°æ­¤ç»“æŸã€‚"},
+        {"lifereviewBtn", "å›é¡¾äººç”Ÿ"},
+        {"restartBtn", "é‡æŠ•å†æ¥"},
+        {"aboutbtn","å…³äº"},
+        {"aboutBack", "è¿”å›"},
+        {"aboutContent",
+        "æ¨¡æ‹Ÿäººç”Ÿå¤§å¯Œç¿ \n\n" +
+        "è¿™æ˜¯ä¸€ä¸ªç”± AI ç”Ÿæˆçš„äººç”Ÿæ¨¡æ‹Ÿæ¸¸æˆï¼Œåœ¨è¿™é‡Œï¼Œ\n" +
+        "ä½ å°†ç»å†åƒå˜ä¸‡åŒ–çš„äººç”Ÿè½¨è¿¹ï¼Œ\n" +
+        "æ·éª°å­ï¼Œåšå‡ºé€‰æ‹©ï¼Œè§è¯å‘½è¿çš„è½®å›ã€‚\n" +
+        "ç”± AI è´Ÿè´£ç¼–å†™å’Œå¯¼æ¼”ï¼Œä½“éªŒä¸€åœºç‹¬ç‰¹çš„èµ›åšäººç”Ÿï¼\n\n" +
+        "å¼€å‘è€…\n" +
+        "- åˆ¶ä½œäºº: Cynthia Chen\n" +
+        "- è”ç³»æ–¹å¼: cynthiachen202304@gmail.com\n" +
+        "- ç‰¹åˆ«æ„Ÿè°¢: æˆ‘çš„æœ‹å‹ Florence å¸®åŠ©æˆ‘è¿›è¡Œæµ‹è¯•\n\n" +
+        "ç‰ˆæœ¬ä¿¡æ¯\n" +
+        "- ç‰ˆæœ¬: v1.0.0\n" +
+        "- å‘å¸ƒæ—¥æœŸ: 2025.03\n" +
+        "- ä¸»è¦åŠŸèƒ½: AI ç”Ÿæˆäººç‰©æ•…äº‹ã€è§’è‰²æˆé•¿ã€äººç”Ÿæ¨¡æ‹Ÿ\n\n" +
+        "é¸£è°¢\n" +
+        "- æ¸¸æˆéŸ³ä¹: Suno AI\n" +
+        "- è§†è§‰ç´ æ: RPG Maker, OpenAI\n" +
+        "æ„Ÿè°¢æ‰€æœ‰æ”¯æŒæœ¬æ¸¸æˆçš„ç©å®¶ï¼\n\n" +
+        "Â© 2025 Cynthia Chen. **All Rights Reserved.**"
+            }
+
 
 
     };
@@ -211,7 +264,29 @@ public class UiManager : MonoBehaviour
         {"GOtitle", "Game Over"},
         {"gameOverText", "You have died due to running out of health. Your life journey ends here."},
         {"lifereviewBtn", "Life Review"},
-        {"restartBtn", "Restart"}
+        {"restartBtn", "Restart"},
+        { "aboutbtn","About"},
+        {"aboutBack", "Back"},
+        {"aboutContent",
+        "Life Monopoly \n\n" +
+        "This is an AI-generated life simulation game where you\n" +
+        "experience countless life paths,\n" +
+        "roll the dice, make choices, and witness the cycle of fate.\n" +
+        "Directed and written by AI, enjoy a unique cyber life journey!\n\n" +
+        "Developer\n" +
+        "- Producer: Cynthia Chen\n" +
+        "- Contact: cynthiachen202304@gmail.com\n" +
+        "- Special Thanks: My friend Florence for testing \n\n" +
+        "Version Info\n" +
+        "- Version: v1.0.0\n" +
+        "- Release Date: March 2025\n" +
+        "- Key Features AI-generated stories, character growth, life simulation\n\n" +
+        "Credits\n" +
+        "- Music: Suno AI\n" +
+        "- Visual Assets: RPG Maker, OpenAI\n" +
+        "- Thanks to all players for your support!\n\n" +
+        "Â© 2025 Cynthia Chen. **All Rights Reserved." }
+
     };
 
 
@@ -247,18 +322,22 @@ public class UiManager : MonoBehaviour
         lifereviewBtn.text = currentTexts["lifereviewBtn"];
         restartBtn.text = currentTexts["restartBtn"];
         drawNumber.text = currentTexts["drawNumber"];
+        backToMenu.text = currentTexts["aboutBack"];
+        content.text = currentTexts["aboutContent"];
+        aboutBtn.text = currentTexts["aboutbtn"];
+
     }
 
     public void realPlayerSetTrue()
     {
-        // Ö»¼¤»îµ±Ç°ĞÔ±ğµÄ½ÇÉ«£¬Òş²ØÁíÒ»¸ö
+        // åªæ¿€æ´»å½“å‰æ€§åˆ«çš„è§’è‰²ï¼Œéšè—å¦ä¸€ä¸ª
         maleCharacter.SetActive(gameManager.playerGender == GameManager.Gender.Male);
         femaleCharacter.SetActive(gameManager.playerGender == GameManager.Gender.Female);
     }
 
     public void realPlayerSetFalse()
     {
-        // Ö±½ÓÒş²ØËùÓĞ½ÇÉ«
+        // ç›´æ¥éšè—æ‰€æœ‰è§’è‰²
         maleCharacter.SetActive(false);
         femaleCharacter.SetActive(false);
     }

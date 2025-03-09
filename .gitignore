@@ -17,3 +17,6 @@ UserSettings/
 
 # MacOS/Linux
 .DS_Store
+
+# ignore gemini api key
+Assets/GeminiManager/JSON_KEY_TEMPLATE.json

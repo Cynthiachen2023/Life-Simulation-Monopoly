@@ -95,8 +95,8 @@ public class GameManager : MonoBehaviour
     {
 
 
-        //生成5-10随机数
-        int diceNumber = Random.Range(4, 11);
+        //生成1-10随机数
+        int diceNumber = Random.Range(1, 11);
 
         diceResultText.text = diceNumber.ToString(); //将数字转化为为文本，然后展示投掷数字，因为text组件只接受string
 
@@ -252,7 +252,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowAllEvents()
     {
-        storyDetailText.text = string.Join("\n\n", "-", allEventList); // 拼接所有事件
+        storyDetailText.text = string.Join("\n\n", allEventList); // 拼接所有事件
         storyDetailCanvas.gameObject.SetActive(true); // 打开大窗口
     }
 
@@ -269,27 +269,27 @@ public class GameManager : MonoBehaviour
         switch (attribute)
         {
             case "health":
-                health += value;
+                health = value;
                 healthText.text = isChinese ? $"健康：{health}" : $"HP: {health}";
-                if (health <= -800)
+                if (health <= 0)
                 {
                     GameOver(); // ⬅ 触发游戏结束
                 }
                 break;
             case "wealth":
-                wealth += value;
+                wealth = value;
                 wealthText.text = isChinese ? $"财富：{wealth}" : $"$: {wealth}";
                 break;
             case "intelligence":
-                intelligence += value;
+                intelligence = value;
                 intelligenceText.text = isChinese ? $"智力：{intelligence}" : $"IQ: {intelligence}";
                 break;
             case "social":
-                social += value;
+                social = value;
                 socialText.text = isChinese ? $"社交：{social}" : $"Soc.: {social}";
                 break;
             case "happiness":
-                happiness += value;
+                happiness = value;
                 happinessText.text = isChinese ? $"快乐值：{happiness}" : $"Joy: {happiness}";
                 break;
         }
@@ -319,6 +319,7 @@ public class GameManager : MonoBehaviour
     {
         string lifeReview;
         Debug.Log("角色死亡，游戏结束");
+        GamemanueMusic();
         if (Uimanager.selectLanguage == UiManager.Language.Chinese)
         {
             gameOverText.text = "你因健康值耗尽而死亡，人生旅程到此结束。\n";
@@ -349,6 +350,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Debug.Log("重新开始游戏");
+        GamemanueMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -395,4 +397,19 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    //  游戏开始时音乐
+    public void GamestartMusic() {
+        Debug.Log("Game Started - Switching to Gameplay BGM");
+        BgmManager.instance.playMusic(BgmManager.instance.gameplayMusic);
+    
+    }
+
+    public void GamemanueMusic() {
+        Debug.Log("Switching to Menu BGM");
+        BgmManager.instance.playMusic(BgmManager.instance.menuMusic);
+
+    }
+
+
 }

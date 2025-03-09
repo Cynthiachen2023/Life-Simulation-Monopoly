@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|D:\\repos\\richlife\\RichLife\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|d:\\repos\\richlife\\richlife\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|d:\\repos\\richlife\\richlife\\assets\\scripts\\bgmmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bgmmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|D:\\repos\\richlife\\RichLife\\assets\\scripts\\aimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\aimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|D:\\repos\\richlife\\RichLife\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7BE05AB-CAAD-2406-6F80-DA4AD530F70E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,9 +29,35 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 239,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 197,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BgmManager.cs",
+              "DocumentMoniker": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\BgmManager.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\BgmManager.cs",
+              "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\BgmManager.cs",
+              "RelativeToolTip": "Assets\\scripts\\BgmManager.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAIwAUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T07:35:41.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\GameManager.cs",
+              "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\scripts\\GameManager.cs",
+              "ViewState": "AgIAACABAAAAAAAAAAAUwM4AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T11:22:58.798Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -36,7 +66,7 @@
               "RelativeDocumentMoniker": "Assets\\scripts\\AImanager.cs",
               "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\AImanager.cs",
               "RelativeToolTip": "Assets\\scripts\\AImanager.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAiwGQAAACWAAAAAAAAAA==",
+              "ViewState": "AgIAAE8BAAAAAAAAAAAYwCkBAABoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-01T12:50:17.502Z",
               "EditorCaption": ""
@@ -49,35 +79,22 @@
               "RelativeDocumentMoniker": "Assets\\scripts\\UiManager.cs",
               "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\UiManager.cs",
               "RelativeToolTip": "Assets\\scripts\\UiManager.cs",
-              "ViewState": "AgIAALkAAAAAAAAAAAAowM0AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAMBAAAAAAAAAAAswAwBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-28T07:35:44.444Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\PlayerMovement.cs",
               "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAA4AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAIwA4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-27T13:13:17.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\GameManager.cs",
-              "ToolTip": "D:\\repos\\richlife\\RichLife\\Assets\\scripts\\GameManager.cs",
-              "RelativeToolTip": "Assets\\scripts\\GameManager.cs",
-              "ViewState": "AgIAAFwBAAAAAAAAAAAuwEgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T13:34:42.032Z",
               "EditorCaption": ""
             }
           ]
