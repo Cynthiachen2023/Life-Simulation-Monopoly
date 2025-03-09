@@ -1,9 +1,9 @@
 # Monopoly Life Simulation
-![alt text](3315143657a4ab77856d15327a11314.png)
+![alt text](readmeImg/3315143657a4ab77856d15327a11314.png)
 
-![alt text](6723340cc447a6411752a19ac926ddd.png)
+![alt text](readmeImg/6723340cc447a6411752a19ac926ddd.png)
 
-![alt text](Map019.png)
+![alt text](readmeImg/Map019.png)
 ## Project Description
 "Life Simulation Monopoly" is an AI-generated life simulation game demo that combines a Monopoly-style gameplay with AI-generated life events. Players roll the dice to progress through different stages of life, experiencing unique AI-created stories along the way.
 
@@ -20,19 +20,19 @@ In this game, you will experience interesting life stories, which the AI serves 
 1. Click "Start Game", and the character will be randomly assigned a gender and initial attributes.
 2. Click "Roll Dice", the character's age will increase by 1-10 years, and they will move forward accordingly.
 3. Landing on a tile triggers an AI-generated event, affecting the character's wealth, career, social skills, and more. However, since the game calls the LLM API and waits for a response, there may be a 2-4 second delay😔 before the event text appears. Once the AI-generated content is received, the event window will automatically pop up.
-![alt text](image.png)
+![alt text](readmeImg/image.png)
 
-4. A footprint icon ![alt text](tile_0078.png)will appear where the character lands. Clicking it allows you to review the historical event that occurred at this position.
+4. A footprint icon ![alt text](readmeImg/tile_0078.png)will appear where the character lands. Clicking it allows you to review the historical event that occurred at this position.
 
 5. If health drops to 0, the AI will generate a death event, and the game will end.
-![alt text](9a7458e0c6bca6e37a62783ee7b22d7.png)
+![alt text](readmeImg/9a7458e0c6bca6e37a62783ee7b22d7.png)
 6. The right-side panel displays the character's current attributes and recent events.
 
-![alt text](image-1.png)
+![alt text](readmeImg/image-1.png)
 
 7. Click "..More" to review the full life history of the character.
 
-![alt text](image-7.png)
+![alt text](readmeImg/image-7.png)
 ### Features
 1. AI-generated dynamic life events
 - LLM generates personality, career, education, and other events
@@ -41,15 +41,15 @@ In this game, you will experience interesting life stories, which the AI serves 
 3. Randomly generated character attributes
 - Gender: Randomly assigned at the start of the game
 
-![alt text](image-2.png) 
-![alt text](image-3.png)
+![alt text](readmeImg/image-2.png) 
+![alt text](readmeImg/image-3.png)
 
-![alt text](image-4.png)
-![alt text](image-5.png)
+![alt text](readmeImg/image-4.png)
+![alt text](readmeImg/image-5.png)
 - Age: Increases by 1-10 years per dice roll
 - Wealth, social skills, health, and happiness are adjusted randomly
 4. Bilingual support (English & Chinese)
-![alt text](image-6.png)
+![alt text](readmeImg/image-6.png)
 5. WebGL compatible—playable directly in a browser
 6. Responsive UI for both desktop and mobile devices
 
